@@ -45,18 +45,23 @@ public class FilesInOut {
     	StringTokenizer st;
     	
 	    while (in.hasNextLine()) {
-	    	String line = in.nextLine();
-	    	st = new StringTokenizer(line);
+	    	st = new StringTokenizer(in.nextLine());
 	    	
 	    	while (st.hasMoreTokens()) {
+	    		String token = st.nextToken();
+	    		//If it is a date, add slash
 	    		try {
-	    		  int i = Integer.parseInt(st.nextToken());
+	    		  int i = Integer.parseInt(token);
+	    		  String date = token.substring(0,5).replaceAll("..", "$0/") + token.substring(5);
+	    		  
+	    		  System.out.println(date);
+	    		  out.print(date);
 
-	    		//do calculations here
 	    		} catch (NumberFormatException nfe) {
-	    			String word = capitalise(st.nextToken());
-		    		out.print(word + " ");
-		    		System.out.print(word + " ");
+	    			// If it is not a date, capitalise word
+	    			String name = capitalise(token);
+		    		out.print(name + " ");
+		    		System.out.print(name + " ");
 	    		}
 	    		
 	    	}
@@ -77,7 +82,9 @@ public class FilesInOut {
     {  
 	    if (str == null || str.length() == 0) return str;  
 	    return str.substring(0, 1).toUpperCase() + str.substring(1);  
-	}  
+	}
+    
+
 
 } // FilesInOut
 
