@@ -14,18 +14,28 @@ public class FilesInOut {
 
     public static void main(String[] args) throws FileNotFoundException {
         // Replace this with statements to set the file name (input) and file name (output).
-//    	String inputName = args[0];
-//    	String outputName = args[1];
+    	String uppercase="";
+    	String inputName="";
+    	String outputName="";
+    	if (args.length==3) {
+    		uppercase = args[0];
+        	inputName = args[1];
+        	outputName = args[2];
+    	}
+    	else if (args.length==2) {
+    		inputName = args[0];
+        	outputName = args[1];
+    	}
     	
-        // Initially it will be easier to hardcode suitable file names.
+    	
+
 //    	Scanner console = new Scanner(System.in);
 //    	System.out.println("Input file: ");
 //    	String inputName = console.next();
 //    	System.out.println("Output file: ");
 //    	String outputName = console.next();
 //    	
-    	String inputName = "input.txt";
-    	String outputName = "output.txt";
+
     	File inputFile = new File(inputName);
     	File outputFile = new File(outputName);
     	
@@ -42,6 +52,7 @@ public class FilesInOut {
         // Add suitable code into the above processing (because you need to do this line by line also.
         // That is, read a line, write a line, loop.
     	
+    	System.out.println(">>> Starting to write new file . . . \n");
     	StringTokenizer st;
     	
 	    while (in.hasNextLine()) {
@@ -59,7 +70,15 @@ public class FilesInOut {
 
 	    		} catch (NumberFormatException nfe) {
 	    			// If it is not a date, capitalise word
-	    			String name = capitalise(token);
+	    			String name;
+	    			if (uppercase.equals("-u")) {			// If -u flag is not included
+	    				name = token.toUpperCase();
+	    				if(token.length()==1) name = name+".";
+	    			}
+	    			else {									// If -u flag is included
+	    				name = capitalise(token);
+	    			}
+	    			
 		    		out.print(name + " ");
 		    		System.out.print(name + " ");
 	    		}
@@ -72,16 +91,21 @@ public class FilesInOut {
     	in.close();
     	out.close();
         // Finally, add code to read the filenames as arguments from the command line.
-
-        System.out.println("You need to add your own code to do anything");
+    	System.out.println(">>> New file written successfully. ");
 
     } // main
     
     
     public static final String capitalise(String str)   
     {  
-	    if (str == null || str.length() == 0) return str;  
-	    return str.substring(0, 1).toUpperCase() + str.substring(1);  
+	    if (str == null || str.length() == 0) return str;
+	    
+	    String result = str.substring(0, 1).toUpperCase() + str.substring(1);
+	    if (str.length()==1) {
+	    	result = result + ".";
+	    }
+	    
+	    return result;
 	}
     
 
