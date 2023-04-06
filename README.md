@@ -5,5 +5,7 @@ This project is not specific to any IDE nor dependency management, but is implem
 
 The input.txt file is unchanged.
 
-The output.txt file contains the output for the following command line arguments "-u input.txt output.txt".
+The inputm.txt file is unchanged.
+
+The output.txt file contains the output for the following command line arguments "-u inputm.txt output.txt".
 This file can be modified/a new output file can be created by running the program with different arguments.
