@@ -8,6 +8,7 @@ import java.lang.Number;
 /**
  * 
  * CSCU9T4 Java strings and files exercise.
+ * @author suniy
  *
  */
 public class FilesInOut {
@@ -17,6 +18,8 @@ public class FilesInOut {
     	String uppercase="";
     	String inputName="";
     	String outputName="";
+    	
+    	//Check if any flags have been added, and allocate variables accordingly
     	if (args.length==3) {
     		uppercase = args[0];
         	inputName = args[1];
@@ -35,23 +38,19 @@ public class FilesInOut {
 //    	System.out.println("Output file: ");
 //    	String outputName = console.next();
 //    	
-
+    	
+    	//Create files
     	File inputFile = new File(inputName);
     	File outputFile = new File(outputName);
     	
         // Set up a new Scanner to read the input file. 
 		Scanner in = new Scanner(inputFile);
 		
-		// Processing line by line would be sensible here.
-	    // Initially, echo the text to System.out to check you are reading correctly.
-	    // Then add code to modify the text to the output format.
-       
-
         // Set up a new PrintWriter to write the output file.
     	PrintWriter out = new PrintWriter(outputFile);
-        // Add suitable code into the above processing (because you need to do this line by line also.
-        // That is, read a line, write a line, loop.
+        
     	
+        // read a line, write a line, loop.
     	System.out.println(">>> Starting to write new file . . . \n");
     	StringTokenizer st;
     	
@@ -88,14 +87,22 @@ public class FilesInOut {
 	    	out.print("\n");
 	    }
     	
+	    //Close both files
     	in.close();
     	out.close();
-        // Finally, add code to read the filenames as arguments from the command line.
+    	
+        
     	System.out.println(">>> New file written successfully. ");
 
     } // main
     
-    
+    /**
+     * 
+     * method to capitalise only first letter of name
+     * @params String str the token passed to the function 
+     * @return String result the name with first letter capitalised
+     *
+     */
     public static final String capitalise(String str)   
     {  
 	    if (str == null || str.length() == 0) return str;
